@@ -77,4 +77,5 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         converter.getObjectMapper().setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         converters.add(converter);
     }
+
 }

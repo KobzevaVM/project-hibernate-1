@@ -1,23 +1,42 @@
 package com.game.entity;
 
+import jakarta.persistence.*;
+import javax.validation.constraints.*;
+
 import java.util.Date;
 
 
+@Entity
+@Table(name = "Player", schema = "rpg")
+@NamedQuery(name = "player_getAllCount", query = "select count(p) from Player p")
 public class Player {
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "NAME", length = 12, nullable = false)
+    @NotEmpty(message = "Name shouldn't be empty.")
     private String name;
 
+    @Column(name = "TITLE", length = 30, nullable = false)
     private String title;
 
+    @Column(name = "RACE", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private Race race;
 
+    @Column(name = "PROFESSION", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private Profession profession;
 
+    @Column(name = "BIRTHDAY", nullable = false)
     private Date birthday;
 
+    @Column(name = "BANNED", nullable = false)
     private Boolean banned;
 
+    @Column(name = "LEVEL", nullable = false)
     private Integer level;
 
     public Player() {
